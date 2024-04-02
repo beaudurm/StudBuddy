@@ -1,0 +1,45 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1 class="dashboard-heading">Teacher Dashboard</h1>
+    <p>{{ message }}</p>
+    <div class="bookings-container">
+        <h2>Your Bookings</h2>
+        {% for booking in bookings|dictsort:"booking_date" %}
+        <div class="booking-row {% if booking.confirmed %}confirmed{% else %}unconfirmed{% endif %}">
+            <div class="booking-details">
+                <span class="booking-date">{{ booking.booking_date|date:"D, d M Y H:i" }}</span>
+                <span class="booking-student">{{ booking.user.get_full_name|default:booking.user.username }}</span>
+                <span class="booking-status">{{ booking.confirmed|yesno:"Confirmed,Pending" }}</span>
+                <span class="booking-passphrase">{{ booking.passphrase }}</span>
+            </div>
+            <div class="booking-actions">
+                {% if booking.confirmed %}
+                <a href="{% url 'lobby' %}?passphrase={{ booking.passphrase }}" class="btn btn-lobby">Join Lesson</a>
+                {% else %}
+                <button type="button" class="btn btn-cancel">Cancel Booking</button>
+                {% endif %}
+                <form method="post" action="{% url 'toggle_booking_confirmation' booking.id %}" class="confirm-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn {% if booking.confirmed %}btn-unconfirm{% else %}btn-confirm{% endif %}">
+                        {{ booking.confirmed|yesno:"Unconfirm,Confirm" }} Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p>No bookings found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+

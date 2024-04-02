@@ -6,10 +6,57 @@
     --shaddow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
   }
 
-body{
-    background-color: rgba(232,233,239,1);
+body {
+    background-image: url('../images/background.svg'); /* adjust path as necessary */
+    background-size: cover; /* cover the entire view */
+    background-position: center; /* center the background image */
+    background-repeat: no-repeat; /* not repeat the image */
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
+
+/* ensure html and body are full height to cover full page with the background */
+html, body {
+    min-height: 100%;
+}
+
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header {
+    height: 70px; /* reduced height */
+    padding: 5px 0; /* adjusted padding */
+}
+
+.logo_ {
+    height: 100px; /* reduced logo height to match the header */
+    width: 100px; /* adjust width automatically to keep aspect ratio */
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    background-color: #742187;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #7421874e;
+}
+
+
 
 
 /* ------------------  Register Page ------------------ */
@@ -67,7 +114,7 @@ body{
 }
 
 .form-field input[type='submit']{
-    background-color: rgb(75, 93, 172);
+    background-color: rgb(178, 26, 224);
     border:none;
     color: #fff;
 }
@@ -166,4 +213,367 @@ body{
 
 #leave-btn{
     background-color: rgb(255, 80, 80, 1);
+}
+
+/* ------------------  Home Page Styling ------------------ */
+
+/* Enhanced welcome message styling for the Tutoring Platform */
+.tutoring-welcome-message {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shaddow);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.tutoring-welcome-message h1 {
+    font-size: 36px;
+    color: rgb(75, 93, 172); 
+    margin-bottom: 20px;
+}
+
+.tutoring-welcome-message p {
+    font-size: 16px;
+    color: rgb(97, 98, 105);
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+/*  class for the 'Enter the Lobby' button to avoid conflict */
+.tutoring-enter-lobby-btn {
+    background-color: rgb(140, 8, 149);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.tutoring-enter-lobby-btn:hover {
+    background-color: rgb(140, 8, 149); /* Darker shade for hover effect, matching the existing button hover effect */
+}
+
+@media screen and (max-width: 450px) {
+    .tutoring-welcome-message h1 {
+        font-size: 24px; /* Responsive font size adjustment */
+    }
+}
+
+/* Enhanced welcome message styling */
+.tutoring-welcome-message {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.tutoring-welcome-message h1 {
+    font-size: 36px;
+    color: rgb(8, 8, 8);
+    margin-bottom: 20px;
+}
+
+.tutoring-welcome-message p {
+    font-size: 16px;
+    color: rgb(97, 98, 105);
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+/* Buttons styling */
+.login-btn, .submit-btn, .cancel-btn {
+    background-color: rgb(140, 8, 149);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.login-btn:hover, .submit-btn:hover, .cancel-btn:hover {
+    background-color: rgb(140, 8, 149);
+}
+
+ /* logout button styles */
+
+ .logout-btn {
+   
+    margin-bottom: 10px;
+}
+
+.logout-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* forms container */
+.login-forms-wrapper, #signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.login-form, .signup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 320px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-control, .signup-form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/*  primary styling */
+.btn-primary {
+    background-color: rgb(140, 8, 149);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: rgb(58, 72, 133);
+}
+
+/* responsive adjustments */
+@media screen and (max-width: 768px) {
+    .login-forms-wrapper {
+        flex-direction: column;
+    }
+}
+
+
+/* button styles */
+.login-btn, .signup-btn {
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* specific styles for sign-up button */
+.signup-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+/* highlight the active form button */
+.button-active {
+    background-color: #555555; /* Darker shade */
+    color: white;
+}
+
+/* on hover, slightly darken the button color */
+.login-btn:hover, .signup-btn:hover {
+    background-color: #444444;
+    color: white;
+}
+
+
+
+/* Teacher Dashboard Styles */
+.dashboard-container {
+    max-width: 950px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    background-color: transparent; /* set the background to transparent */
+    text-align: center;
+    position: relative; /* needed for absolute positioning of children */
+}
+
+.dashboard-heading {
+    background-color: #fff; /* white background for the heading */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    position: absolute; /* position it absolutely within dashboard-container */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Center it */
+    width: calc(100% - 40px); /* full width minus padding */
+}
+
+.bookings-container {
+    padding: 20px;
+    margin-top: 60px; /* give space for the absolutely positioned heading */
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* space between booking rows */
+}
+
+.booking-row {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    display: flex;
+    align-items: center; /* align items in the row vertically */
+    justify-content: space-between; /* spread out content */
+}
+
+.booking-details {
+    flex: 1; /* take up remaining space */
+}
+
+.status-indicator {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.confirmed .status-indicator { background-color: #4CAF50; }
+.unconfirmed .status-indicator { background-color: #FFEB3B; }
+
+.booking-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    background-color: #6f42c1;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirmed .btn-lobby { display: block; }
+.unconfirmed .btn-lobby { display: none; }
+
+.confirmed .btn-unconfirm { background-color: #9953ff; }
+.unconfirmed .btn-confirm { background-color: #ccc; color: #333; }
+
+.btn:hover {
+    background-color: #573d86;
+}
+
+@media (max-width: 768px) {
+    .booking-row {
+        flex-direction: column; /* stack the details and actions on top of each other */
+        align-items: flex-start; /* align items to the start */
+    }
+
+    .booking-actions {
+        width: 100%;
+        justify-content: space-between; /* spread the buttons across the full width */
+    }
+
+    .btn {
+        width: 100%; /* full width buttons on smaller screens */
+    }
+}
+
+
+
+/* student booking page  */
+
+.booking-page-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.booking-page-container h1 {
+    color: #4a148c;
+    margin-bottom: 2rem;
+}
+
+.create-booking-btn, .join-lesson-btn {
+    display: inline-block;
+    margin: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    background-color: #9c27b0;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.create-booking-btn:hover, .join-lesson-btn:hover {
+    background-color: #7b1fa2;
+}
+
+.bookings-display {
+    margin-bottom: 2rem;
+}
+
+.booking-details {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.booking-info {
+    display: block; /* Each info will be on a new line */
+    margin: 0.5rem 0;
+}
+
+.booking-info.status-confirmed {
+    color: #388e3c; /* Green for confirmed */
+}
+
+.booking-info.status-pending {
+    color: #ffa000; /* Orange for pending */
+}
+
+@media screen and (max-width: 768px) {
+    .create-booking-btn, .join-lesson-btn {
+        width: 100%; /* Full width buttons on smaller screens */
+        margin: 1rem 0;
+    }
+
+    .booking-details {
+        padding: 0.5rem 0; /* Less padding on smaller screens */
+    }
 }

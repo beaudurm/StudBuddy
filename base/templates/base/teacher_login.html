@@ -1,0 +1,26 @@
+{% extends "base/main.html" %}
+{% load static %}
+ <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+{% block content %}
+
+<div class="container">
+    <h2>Teacher Login</h2>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="{% url 'teacher_login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+{% endblock %}
+

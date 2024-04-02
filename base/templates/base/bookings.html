@@ -1,0 +1,25 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="booking-page-container">
+    <h1>Bookings</h1>
+    <a href="{% url 'create_booking' %}" class="create-booking-btn">Create Booking</a>
+    
+    <div class="bookings-display">
+        {% for booking in bookings %}
+            <div class="booking-details">
+                <span class="booking-info">Passphrase: {{ booking.passphrase }}</span>
+                <span class="booking-info">Teacher: {{ booking.teacher.get_full_name|default:booking.teacher.username }}</span>
+                <span class="booking-info">Date & Time: {{ booking.booking_date|date:"F d, Y H:i" }}</span>
+                <span class="booking-info status-{{ booking.confirmed|yesno:'confirmed,pending' }}">Status: {{ booking.confirmed|yesno:"Confirmed,Pending" }}</span>
+            </div>
+        {% empty %}
+            <p>No bookings found.</p>
+        {% endfor %}
+    </div>
+    
+    <a href="{% url 'lobby' %}" class="join-lesson-btn">Join Lesson</a>
+</div>
+{% endblock %}
+
