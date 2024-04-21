@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>MyChat</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'styles/main.css' %}">
-    <!-- <script src="{% static 'js/main.js' %}"></script> -->
+    <meta charset="UTF-8">
+    <title>{% block title %}StudyBuddy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
-
-
 <body>
-    {% block content %}
+    {% if not request.resolver_match.url_name in "login,lobby,room" %}
+    <header class="site-header">
+        <div class="container">
+            <img src="{% static 'images/newlog.svg' %}" alt="StudyBuddy Logo_" class="logo_">
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        {% endif %}
+        
+        </div>
+    </header>
+    {% endif %}
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-    {% endblock content %}
+    <footer>
+        {% block footer %}
+        
+        {% endblock %}
+    </footer>
+    
+
+    {% block extra_js %}{% endblock %}
 </body>
-<!-- <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.8.0.js' %}"></script> -->
-
-
 </html>
+
+

@@ -16,9 +16,11 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 
-# assuming this is unchanged
+
+
 def home(request):
     return render(request, 'base/home.html')
 
@@ -82,31 +84,30 @@ def teacher_login(request):
     
 def signup(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        email = request.POST.get('email')
-        role = request.POST.get('role')
-        
-        # create the user
-        user = User.objects.create_user(username=username, password=password)
-        
-        # assign the user to the correct group and define redirect URL based on role
-        redirect_url = 'student_dashboard'  # default to student dashboard
-        if role == 'student':
-            group = Group.objects.get(name='Students')
-        elif role == 'teacher':
-            group = Group.objects.get(name='Teachers')
-            redirect_url = 'teacher_dashboard'  # change redirect URL for teachers
-        user.groups.add(group)
-        user.save()
+        username = request.POST['username']
+        password = request.POST['password']
+        role = request.POST['role']
 
-        # authenticate and login the user
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect(redirect_url)  # redirect based on the role
-    
-    return render(request, 'signup')  # render a signup form template
+        try:
+            # Create the user
+            user = User.objects.create_user(username=username, password=password)
+            # Assign the user to the correct group
+            group_name = 'Students' if role == 'student' else 'Teachers'
+            group, created = Group.objects.get_or_create(name=group_name)
+            user.groups.add(group)
+            # Authenticate and login the user
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                redirect_url = 'bookings' if role == 'student' else 'teacher_dashboard'
+                return redirect(redirect_url)
+        except Exception as e:
+            # Handle exceptions appropriately
+            messages.error(request, 'Error creating account: {}'.format(e))
+            return HttpResponse(status=500)
+
+    # Render a signup form template for GET request or failed POST
+    return render(request, 'signup.html')  
 
 
 
@@ -141,7 +142,7 @@ def view_bookings(request):
 
 @login_required
 def create_booking(request):
-    # Ensure only authenticated users can create bookings
+    
     if not request.user.is_authenticated:
         return HttpResponseForbidden("You must be logged in to create a booking.")
     
@@ -150,12 +151,12 @@ def create_booking(request):
         teacher_id = request.POST.get('teacher')
         
         try:
-            # Attempt to convert the booking date to a datetime object
+            
             booking_date = datetime.strptime(booking_date_str, "%Y-%m-%dT%H:%M")
-            # Ensure the selected teacher exists
+            
             teacher = User.objects.get(id=teacher_id)
             
-            # Create the Booking
+            # create booking
             booking = Booking.objects.create(
                 user=request.user,
                 teacher=teacher,
@@ -165,40 +166,40 @@ def create_booking(request):
             booking.save()
             return redirect('bookings')
         except ValueError:
-            # handle incorrect date format
+            # incorrect date format handler
             return render(request, 'base/create_booking.html', {
                 'error': 'Invalid date format. Please use YYYY-MM-DDTHH:MM format.',
                 'teachers': User.objects.filter(groups__name='Teachers')
             })
         except User.DoesNotExist:
-            #handle case where the selected teacher does not exist
+            #teacher not existing handler
             return render(request, 'base/create_booking.html', {
                 'error': 'Selected teacher does not exist.',
                 'teachers': User.objects.filter(groups__name='Teachers')
             })
     else:
-        # for GET requests, display the booking form with the list of teachers
+        # display list of teachers in booking
         return render(request, 'base/create_booking.html', {
             'teachers': User.objects.filter(groups__name='Teachers')
         })
     
 def change_booking_status(request, booking_id):
     
-    return redirect('bookings')  # redirect to bookings page after
+    return redirect('bookings')  
 
 @login_required
 def toggle_booking_confirmation(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     
-    # Security check: ensure the current user is the teacher for the booking
+    # chek user is teacher 
     if booking.teacher != request.user:
         return HttpResponseForbidden("You do not have permission to change this booking's status.")
 
-    # Toggle confirmation status
+    # confirmation status
     booking.confirmed = not booking.confirmed
     booking.save()
     
-    return redirect('teacher_dashboard')  # Redirect back to the teacher dashboard
+    return redirect('teacher_dashboard')  
 
 def getToken(request):
     appId = 'cb3fa3b62ac94450847c7b1c7d2e35b1'
@@ -209,7 +210,7 @@ def getToken(request):
     currentTimeStamp = int(time.time())
     privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
     role = 1
-
+    #token management, expiery date, intergration with Agora
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
     return JsonResponse ({'token': token, 'uid': uid}, safe=False)
 
@@ -218,6 +219,8 @@ def lobby(request):
 
 def room(request):
     return render(request, 'base/room.html')
+
+#create memeber for video 'room'
 
 @csrf_exempt
 def createMember(request):
@@ -230,7 +233,7 @@ def createMember(request):
 
     return JsonResponse({'name':data['name']}, safe=False)
 
-
+#get and delete memeber for leaving and joining video calls
 def getMember(request):
     uid = request.GET.get('UID')
     room_name = request.GET.get('room_name')

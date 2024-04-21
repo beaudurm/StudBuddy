@@ -120,6 +120,8 @@ html, body {
 }
 
 
+
+
 @media screen and (max-width:450px) {
     #form-container{
         width: 95%;
@@ -255,16 +257,16 @@ html, body {
 }
 
 .tutoring-enter-lobby-btn:hover {
-    background-color: rgb(140, 8, 149); /* Darker shade for hover effect, matching the existing button hover effect */
+    background-color: rgb(140, 8, 149); 
 }
 
 @media screen and (max-width: 450px) {
     .tutoring-welcome-message h1 {
-        font-size: 24px; /* Responsive font size adjustment */
+        font-size: 24px; /* Responsive font size */
     }
 }
 
-/* Enhanced welcome message styling */
+/* welcome message  */
 .tutoring-welcome-message {
     text-align: center;
     background-color: #fff;
@@ -288,7 +290,7 @@ html, body {
     margin-bottom: 20px;
 }
 
-/* Buttons styling */
+/* Buttons  */
 .login-btn, .submit-btn, .cancel-btn {
     background-color: rgb(140, 8, 149);
     color: white;
@@ -305,7 +307,7 @@ html, body {
     background-color: rgb(140, 8, 149);
 }
 
- /* logout button styles */
+ /* logout button  */
 
  .logout-btn {
    
@@ -318,7 +320,7 @@ html, body {
 }
 
 
-/* forms container */
+/* form containers */
 .login-forms-wrapper, #signupForm {
     display: flex;
     flex-direction: column;
@@ -387,19 +389,19 @@ html, body {
     text-align: center;
 }
 
-/* specific styles for sign-up button */
+/* sign-up button */
 .signup-btn {
     background-color: #4CAF50; /* Green */
     color: white;
 }
 
-/* highlight the active form button */
+/* highlight the active form  */
 .button-active {
     background-color: #555555; /* Darker shade */
     color: white;
 }
 
-/* on hover, slightly darken the button color */
+/* darken on hover */
 .login-btn:hover, .signup-btn:hover {
     background-color: #444444;
     color: white;
@@ -414,32 +416,32 @@ html, body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: var(--shadow);
-    background-color: transparent; /* set the background to transparent */
+    background-color: transparent; 
     text-align: center;
-    position: relative; /* needed for absolute positioning of children */
+    position: relative; 
 }
 
 .dashboard-heading {
-    background-color: #fff; /* white background for the heading */
+    background-color: #fff; 
     padding: 10px;
     border-radius: 5px;
     box-shadow: var(--shadow);
-    position: absolute; /* position it absolutely within dashboard-container */
+    position: absolute; 
     top: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Center it */
-    width: calc(100% - 40px); /* full width minus padding */
+    transform: translateX(-50%); 
+    width: calc(100% - 40px); 
 }
 
 .bookings-container {
     padding: 20px;
-    margin-top: 60px; /* give space for the absolutely positioned heading */
+    margin-top: 60px; 
 }
 
 .bookings-list {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* space between booking rows */
+    gap: 10px; 
 }
 
 .booking-row {
@@ -449,12 +451,12 @@ html, body {
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,.1);
     display: flex;
-    align-items: center; /* align items in the row vertically */
-    justify-content: space-between; /* spread out content */
+    align-items: center; 
+    justify-content: space-between; 
 }
 
 .booking-details {
-    flex: 1; /* take up remaining space */
+    flex: 1; 
 }
 
 .status-indicator {
@@ -465,6 +467,7 @@ html, body {
     margin-right: 10px;
 }
 
+/* manage status indicator fo teachers */
 .confirmed .status-indicator { background-color: #4CAF50; }
 .unconfirmed .status-indicator { background-color: #FFEB3B; }
 
@@ -496,17 +499,17 @@ html, body {
 
 @media (max-width: 768px) {
     .booking-row {
-        flex-direction: column; /* stack the details and actions on top of each other */
-        align-items: flex-start; /* align items to the start */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     .booking-actions {
         width: 100%;
-        justify-content: space-between; /* spread the buttons across the full width */
+        justify-content: space-between; 
     }
 
     .btn {
-        width: 100%; /* full width buttons on smaller screens */
+        width: 100%; /* button full width for smaller screens */
     }
 }
 
@@ -555,25 +558,25 @@ html, body {
 }
 
 .booking-info {
-    display: block; /* Each info will be on a new line */
+    display: block; 
     margin: 0.5rem 0;
 }
 
 .booking-info.status-confirmed {
-    color: #388e3c; /* Green for confirmed */
+    color: #388e3c; 
 }
 
 .booking-info.status-pending {
-    color: #ffa000; /* Orange for pending */
+    color: #ffa000; 
 }
 
 @media screen and (max-width: 768px) {
     .create-booking-btn, .join-lesson-btn {
-        width: 100%; /* Full width buttons on smaller screens */
+        width: 100%; 
         margin: 1rem 0;
     }
 
     .booking-details {
-        padding: 0.5rem 0; /* Less padding on smaller screens */
+        padding: 0.5rem 0; 
     }
 }

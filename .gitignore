@@ -1,0 +1,51 @@
+# General Python ignores
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Specific directories
+Beau/
+db.sqlite3
+
+# Migration files
+base/migrations/
+!base/migrations/
+base/migrations/*.py
+!base/migrations/__init__.py
+
+# SQLite database file (commonly used in development)
+db.sqlite3
+
+# IDE specific settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# Operating system generated files
+.DS_Store
+Thumbs.db
+
+
+
