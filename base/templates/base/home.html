@@ -14,12 +14,12 @@
         <h1>Welcome to StudyBuddy</h1>
         <p>This is the starting point of our journey to knowledge.</p>
 
-        <!-- Buttons to toggle login forms -->
+        <!-- buttons forlogin forms -->
         <button id="showStudentLoginForm" class="login-btn">Student Login</button>
         <button id="showTeacherLoginForm" class="login-btn">Teacher Login</button>
         <button id="showSignupForm" class="login-btn">Sign Up</button>
 
-        <!-- Student Login Form (Initially Hidden) -->
+        <!-- student login form  -->
         <div id="studentLoginForm" style="display:none;">
             <form method="post" action="{% url 'student_login' %}">
                 {% csrf_token %}
@@ -31,7 +31,7 @@
             </form>
         </div>
 
-        <!-- Teacher Login Form (Initially Hidden) -->
+        <!-- teacher login form  -->
         <div id="teacherLoginForm" style="display:none;">
             <form method="post" action="{% url 'teacher_login' %}">
                 {% csrf_token %}
@@ -43,7 +43,7 @@
             </form>
         </div>
 
-        <!-- Sign-Up Form (Initially Hidden) -->
+        <!-- sign-up form  -->
         <div id="signupForm" style="display:none;">
             <form method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
@@ -72,7 +72,7 @@
         const teacherLoginForm = document.getElementById("teacherLoginForm");
         const signupForm = document.getElementById("signupForm");
     
-        // Function to reset all button styles and hide all forms
+        // function to reset all button styles and hide all forms
         function resetAll() {
             studentLoginForm.style.display = "none";
             teacherLoginForm.style.display = "none";
@@ -82,21 +82,21 @@
             signupBtn.classList.remove("button-active");
         }
     
-        // Display the student login form and highlight the button
+        
         studentLoginBtn.onclick = function() {
             resetAll();
             studentLoginForm.style.display = "block";
             studentLoginBtn.classList.add("button-active");
         };
     
-        // Display the teacher login form and highlight the button
+        
         teacherLoginBtn.onclick = function() {
             resetAll();
             teacherLoginForm.style.display = "block";
             teacherLoginBtn.classList.add("button-active");
         };
     
-        // Display the signup form and highlight the button
+        
         signupBtn.onclick = function() {
             resetAll();
             signupForm.style.display = "block";

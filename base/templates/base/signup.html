@@ -14,12 +14,12 @@
         <h1>Welcome to StudyBuddy</h1>
         <p>This is the starting point of our journey to knowledge.</p>
 
-        <!-- Buttons to toggle login forms -->
+        <!--  toggle login forms -->
         <button id="showStudentLoginForm" class="login-btn">Student Login</button>
         <button id="showTeacherLoginForm" class="login-btn">Teacher Login</button>
         <button id="showSignupForm" class="login-btn">Sign Up</button>
 
-        <!-- Student Login Form (Initially Hidden) -->
+        <!-- student Login Form (hidden drop down) -->
         <div id="studentLoginForm" style="display:none;">
             <form method="post" action="{% url 'student_login' %}">
                 {% csrf_token %}
@@ -31,7 +31,7 @@
             </form>
         </div>
 
-        <!-- Teacher Login Form (Initially Hidden) -->
+        <!-- teacher Login Form (hidden drop down) -->
         <div id="teacherLoginForm" style="display:none;">
             <form method="post" action="{% url 'teacher_login' %}">
                 {% csrf_token %}
@@ -43,29 +43,26 @@
             </form>
         </div>
 
-        <!-- Sign-Up Form (Initially Hidden) -->
+        <!-- sign-Up Form (hidden drop down) -->
         <div id="signupForm" style="display:none;">
             <form method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 <label for="signupUsername">Username:</label><br>
                 <input type="text" name="username" id="signupUsername" required><br>
-
                 <label for="signupPassword">Password:</label><br>
                 <input type="password" name="password" id="signupPassword" required><br>
-
                 <label for="signupRole">Role:</label><br>
                 <select name="role" id="signupRole" required>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                 </select><br>
-
                 <input type="submit" value="Sign Up">
             </form>
         </div>
     </div>
 
     <script>
-        // Handles clicking on the buttons to show forms
+        // Handlers
         document.getElementById("showStudentLoginForm").onclick = function() {
             document.getElementById("studentLoginForm").style.display = "block";
             document.getElementById("teacherLoginForm").style.display = "none";

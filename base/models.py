@@ -18,10 +18,6 @@ class RoomMember(models.Model):
     def __str__(self):
         return self.name
 
-from django.db import models
-from django.conf import settings
-import random
-import string
 
 class Booking(models.Model):
     user = models.ForeignKey(
@@ -39,15 +35,13 @@ class Booking(models.Model):
     )
     booking_date = models.DateTimeField()
     confirmed = models.BooleanField(default=False)
-    passphrase = models.CharField(max_length=4, blank=True)  # adding the passphrase field
+    passphrase = models.CharField(max_length=4, blank=True)  # passphrase
 
     def save(self, *args, **kwargs):
         if not self.passphrase:  
-            # if passphrase is not set, generate a new one
-            # generate a passphrase with 2 letters and 2 digits
             letters = random.choices(string.ascii_letters, k=2)
             digits = random.choices(string.digits, k=2)
-            self.passphrase = ''.join(random.sample(letters + digits, 4))  # Mix and randomize the characters
+            self.passphrase = ''.join(random.sample(letters + digits, 4))  # booking key randomiser
         super(Booking, self).save(*args, **kwargs)
 
     def __str__(self):

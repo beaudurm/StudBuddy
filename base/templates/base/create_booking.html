@@ -4,15 +4,15 @@
 {% block content %}
 <div class="booking-page-container">
     <h1>Create a Booking</h1>
-    <form method="post" action="{% url 'create_booking' %}">  <!-- Replace 'create_booking_url_name' with the actual name of the URL for creating a booking -->
+    <form method="post" action="{% url 'create_booking' %}">  
         {% csrf_token %}
         <div class="form-group">
             <label for="booking_date">Booking Date:</label>
             <input type="datetime-local" id="booking_date" name="booking_date" class="form-control" required>
         </div>
         
-        <!-- Teacher selection dropdown -->
         <div class="form-group">
+            <!-- select teacher -->
             <label for="teacher">Select a Teacher:</label>
             <select name="teacher" id="teacher" class="form-control" required>
                 {% for teacher in teachers %}
